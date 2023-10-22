@@ -1,9 +1,23 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] arr = new String[5][5];
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("게임 보드의 크기 입력 (5~15) : ");
+        int size;
+        size = scan.nextInt();
+
+        if (size<5 || size>15){
+            System.out.println("크기 입력 오류");
+            System.out.print("게임 보드의 크기 입력 (5~15) : ");
+            size = scan.nextInt();
+        }
+
+        String[][] arr = new String[size][size];
         int x_num = 2;
 
         for(int i = 0; i < arr.length; i++)
