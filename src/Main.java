@@ -38,6 +38,28 @@ public class Main {
             arr[x][y] = "X";
         }
 
+        int [] dx = {-1,-1,-1,0,0,1,1,1};
+        int [] dy = {-1,0,1,-1,1,-1,0,1};
+        int cnt =0;
+
+        for(int i = 0 ; i < arr.length ; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == "O") {
+                    for (int k = 0; k < 8; k++) {
+                        int next_x = i + dx[k];
+                        int next_y = j + dy[k];
+
+                        if (0 <= next_x && next_x < size && 0 <= next_y && next_y < size) {
+                            if(arr[next_x][next_y]=="X"){cnt+=1;}
+                        }
+                    }
+                    if (cnt != 0 ){
+                    arr[i][j] = Integer.toString(cnt);
+                    cnt =0;}
+                }
+            }
+        }
+
         for(int i = 0 ; i < arr.length ; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 System.out.print(arr[i][j]);
