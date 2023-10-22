@@ -18,7 +18,15 @@ public class Main {
         }
 
         String[][] arr = new String[size][size];
-        int x_num = 2;
+
+        System.out.print("지뢰 개수 입력 : ");
+        int x_num = scan.nextInt();
+
+        while (x_num<size*size/10 || x_num>size*size*2/10){
+            System.out.println("옳지 않은 개수");
+            System.out.print("지뢰 개수 입력 : ");
+            x_num = scan.nextInt();
+        }
 
         for(int i = 0; i < arr.length; i++)
             Arrays.fill(arr[i], "O");
