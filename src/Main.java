@@ -11,7 +11,7 @@ public class Main {
         int size;
         size = scan.nextInt();
 
-        if (size<5 || size>15){
+        while (size<5 || size>15){
             System.out.println("크기 입력 오류");
             System.out.print("게임 보드의 크기 입력 (5~15) : ");
             size = scan.nextInt();
