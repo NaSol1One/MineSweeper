@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        //뭘 잘못했는지 PR이 안 뜨는 상황 발생
+
         Scanner scan = new Scanner(System.in);
 
         System.out.print("게임 보드의 크기 입력 (5~15) : ");
