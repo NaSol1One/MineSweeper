@@ -5,34 +5,33 @@ import java.util.Scanner;
 
 public class test {
 
+    public static int ScanNum() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextInt();
+    }
 
     public static int ScanBoardSize() {
-        Scanner scan = new Scanner(System.in);
-
         System.out.print("게임 보드의 크기 입력 (5~15) : ");
         int size;
-        size = scan.nextInt();
+        size = ScanNum();
 
         while (size < 5 || size > 15) {
             System.out.println("크기 입력 오류");
             System.out.print("게임 보드의 크기 입력 (5~15) : ");
-            size = scan.nextInt();
+            size = ScanNum();
         }
 
         return size;
     }
 
     public static int ScanMineNum(int size) {
-
-        Scanner scan = new Scanner(System.in);
-
         System.out.print("지뢰 개수 입력 : ");
-        int mine_num = scan.nextInt();
+        int mine_num = ScanNum();
 
         while (mine_num < size * size / 10 || mine_num > size * size * 2 / 10) {
             System.out.println("옳지 않은 개수");
             System.out.print("지뢰 개수 입력 : ");
-            mine_num = scan.nextInt();
+            mine_num = ScanNum();
         }
         return mine_num;
     }
@@ -65,29 +64,30 @@ public class test {
     }
 
     public static String[][] CountMine(String[][] arr, int size) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                CountMineOnBlank(arr, size, i, j);
+            }
+        }
+        return arr;
+    }
+
+    public static void CountMineOnBlank(String[][] arr, int size, int x, int y) {
         int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
         int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
         int cnt = 0;
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j].equals("O")) {
-                    for (int k = 0; k < 8; k++) {
-                        int next_x = i + dx[k];
-                        int next_y = j + dy[k];
+        for (int k = 0; k < 8; k++) {
+            int next_x = x + dx[k];
+            int next_y = y + dy[k];
 
-                        if (0 <= next_x && next_x < size && 0 <= next_y && next_y < size) {
-                            if (arr[next_x][next_y].equals("X")) {
-                                cnt += 1;
-                            }
-                        }
-                    }
-                    arr[i][j] = Integer.toString(cnt);
-                    cnt = 0;
+            if (0 <= next_x && next_x < size && 0 <= next_y && next_y < size) {
+                if (arr[next_x][next_y].equals("X")) {
+                    cnt += 1;
                 }
             }
         }
-        return arr;
+        arr[x][y] = Integer.toString(cnt);
     }
 
     public static void main(String[] args) {
