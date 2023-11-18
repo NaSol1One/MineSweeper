@@ -14,31 +14,38 @@ public class MineSweeper {
     }
 
     public static int ScanBoardSize() {
-        int size;
         final int MinBoardSize = 5 ;
         final int MaxBoardSize = 15 ;
-        System.out.printf("게임 보드의 크기 입력 ( %d ~ %d ) : ",MinBoardSize,MaxBoardSize);
-        size = ScanNum();
+        int size = ReceiveBoardSize(MinBoardSize,MaxBoardSize);
 
         while (size < MinBoardSize || size > MaxBoardSize) {
             System.out.println("크기 입력 오류");
-            System.out.printf("게임 보드의 크기 입력 ( %d ~ %d ) : ",MinBoardSize,MaxBoardSize);
-            size = ScanNum();
+            size = ReceiveBoardSize(MinBoardSize,MaxBoardSize);
         }
 
         return size;
     }
 
-    public static int ScanMineNum(int size) {
+    public static int ReceiveBoardSize(int MinBoardSize, int MaxBoardSize) {
+        System.out.printf("게임 보드의 크기 입력 ( %d ~ %d ) : ",MinBoardSize,MaxBoardSize);
+
+        return ScanNum();
+    }
+
+    public static int ReceiveMineNum() {
         System.out.print("지뢰 개수 입력 : ");
-        int mine_num = ScanNum();
+
+        return ScanNum();
+    }
+
+    public static int ScanMineNum(int size) {
+        int mine_num = ReceiveMineNum();
         final int MinMineNum = size * size / 10 ;
         final int MaxMineNum = size * size * 2 / 10 ;
 
         while (mine_num < MinMineNum || mine_num > MaxMineNum) {
             System.out.println("옳지 않은 개수");
-            System.out.print("지뢰 개수 입력 : ");
-            mine_num = ScanNum();
+            mine_num = ReceiveMineNum();
         }
         return mine_num;
     }
